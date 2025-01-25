@@ -38,20 +38,20 @@ const Navbar = () => {
     )}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <a href="#" className="text-xl font-semibold text-primary">Portfolio</a>
-          <div className="flex gap-8">
-            {["about", "projects", "blog", "contact"].map((section) => (
+          <a href="#" className="text-xl font-semibold">SOPHIA</a>
+          <div className="flex items-center gap-8">
+            {["HOME", "ABOUT", "WORK", "SERVICES"].map((item) => (
               <button
-                key={section}
-                onClick={() => scrollTo(section)}
-                className={cn(
-                  "capitalize text-sm transition-colors hover:text-primary",
-                  activeSection === section ? "text-primary font-medium" : "text-muted-foreground"
-                )}
+                key={item}
+                onClick={() => scrollTo(item.toLowerCase())}
+                className="text-sm hover:text-primary transition-colors"
               >
-                {section}
+                {item}
               </button>
             ))}
+            <Button variant="outline" className="ml-4">
+              Available for Projects
+            </Button>
           </div>
         </div>
       </div>
