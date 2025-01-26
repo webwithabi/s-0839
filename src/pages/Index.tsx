@@ -1,7 +1,5 @@
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
-import Projects from "@/components/Projects";
-import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 
 const Index = () => {
@@ -10,8 +8,6 @@ const Index = () => {
       <Navbar />
       <main>
         <About />
-        <Projects />
-        <Blog />
         <Contact />
       </main>
     </div>
