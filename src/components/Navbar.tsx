@@ -1,36 +1,20 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [activeSection, setActiveSection] = useState("about");
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
-      const sections = ["about", "projects", "blog", "contact"];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <nav className={cn(
@@ -39,16 +23,23 @@ const Navbar = () => {
     )}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <a href="#" className="text-xl font-semibold">SOPHIA</a>
+          <Link to="/" className="text-xl font-semibold">ABINASH</Link>
           <div className="flex items-center gap-8">
-            {["HOME", "ABOUT", "WORK", "SERVICES"].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollTo(item.toLowerCase())}
-                className="text-sm hover:text-primary transition-colors"
+            {[
+              { name: "ABOUT", path: "/about" },
+              { name: "WORK", path: "/work" },
+              { name: "EXPERTISE", path: "/expertise" }
+            ].map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={cn(
+                  "text-sm hover:text-primary transition-colors",
+                  location.pathname === item.path && "text-primary font-medium"
+                )}
               >
-                {item}
-              </button>
+                {item.name}
+              </Link>
             ))}
             <Button variant="outline" className="ml-4">
               Available for Projects
