@@ -1,48 +1,95 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const categories = ["ALL", "WEB", "MOBILE", "BRANDING", "PACKAGING", "VIDEO"];
 
 const projects = [
   {
-    title: "E-commerce Platform",
-    category: "Full Stack Development",
-    description: "Built a scalable e-commerce platform using React, Node.js, and MongoDB, featuring real-time inventory management and secure payment integration.",
+    title: "Verizon Webinar",
+    category: "WEB",
+    description: "A webinar platform built for Verizon with real-time interaction features and seamless video streaming capabilities.",
+    image: "/lovable-uploads/b122ed21-d646-43af-acd4-01edd5456715.png"
+  },
+  {
+    title: "DMart E-commerce",
+    category: "WEB",
+    description: "A full-featured e-commerce platform for DMart with product management, cart functionality, and secure checkout process.",
+    image: "/lovable-uploads/09bc817d-d5b2-488d-b1bd-c7ab00e26588.png"
+  },
+  {
+    title: "Mobile Banking App",
+    category: "MOBILE",
+    description: "A secure and user-friendly mobile banking application with features like transaction history and bill payments.",
     image: "/placeholder.svg"
   },
   {
-    title: "Portfolio Website",
-    category: "Frontend Development",
-    description: "Designed and developed a responsive portfolio website using React and Tailwind CSS, showcasing modern design principles and smooth animations.",
+    title: "Tech Brand Identity",
+    category: "BRANDING",
+    description: "Complete brand identity design for a technology startup, including logo, color palette, and brand guidelines.",
     image: "/placeholder.svg"
   }
 ];
 
 const Work = () => {
+  const [activeCategory, setActiveCategory] = useState("ALL");
+
+  const filteredProjects = projects.filter(project => 
+    activeCategory === "ALL" ? true : project.category === activeCategory
+  );
+
   return (
-    <section className="min-h-screen pt-20">
+    <div className="min-h-screen pt-24">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-12">Featured Work</h2>
-        <div className="space-y-16">
-          {projects.map((project, index) => (
-            <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden">
+        <h1 className="text-5xl font-bold text-center mb-16">Work we've loved doing</h1>
+        
+        {/* Category Filter */}
+        <div className="flex justify-center gap-8 mb-16">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={cn(
+                "text-sm font-medium transition-colors relative",
+                activeCategory === category 
+                  ? "text-primary" 
+                  : "text-muted-foreground hover:text-primary",
+                activeCategory === category && "after:content-['•'] after:absolute after:-bottom-4 after:left-1/2 after:-translate-x-1/2"
+              )}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
+          {filteredProjects.map((project, index) => (
+            <div 
+              key={index} 
+              className="group relative overflow-hidden rounded-lg"
+            >
+              <div className="aspect-[4/3] bg-muted overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
-              <div className="space-y-4">
-                <span className="text-sm text-muted-foreground">{project.category}</span>
-                <h3 className="text-2xl font-semibold">{project.title}</h3>
-                <p className="text-muted-foreground">{project.description}</p>
-                <Button variant="outline" className="mt-4">
-                  View Project
-                </Button>
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-2xl font-semibold text-white mb-2">{project.title}</h3>
+                  <p className="text-sm text-gray-200 mb-4">{project.description}</p>
+                  <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+                    View Project
+                  </Button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
