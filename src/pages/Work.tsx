@@ -25,7 +25,7 @@ const projects = [
     category: "MOBILE",
     description: "A secure and user-friendly mobile banking application with features like transaction history and bill payments.",
     image: "/placeholder.svg",
-    featured: false
+    featured: true
   },
   {
     title: "Tech Brand Identity",
@@ -69,37 +69,43 @@ const Work = () => {
             ))}
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
-            {filteredProjects.map((project, index) => (
-              <div 
-                key={index} 
-                className={cn(
-                  "group relative overflow-hidden rounded-lg",
-                  project.featured && "md:col-span-2"
-                )}
-              >
-                <div className={cn(
-                  "bg-muted overflow-hidden",
-                  project.featured ? "aspect-[2/1]" : "aspect-[4/3]"
-                )}>
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-2xl font-semibold text-white mb-2">{project.title}</h3>
-                    <p className="text-sm text-gray-200 mb-4">{project.description}</p>
-                    <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
-                      View Project
-                    </Button>
+          {/* Projects Flex Layout */}
+          <div className="flex flex-wrap gap-8 animate-fade-in">
+            {filteredProjects.map((project, index) => {
+              const isEvenRow = Math.floor(index / 2) % 2 === 0;
+              const isFirstInRow = index % 2 === 0;
+              
+              return (
+                <div 
+                  key={index} 
+                  className={cn(
+                    "group relative overflow-hidden rounded-lg",
+                    "flex-grow-0 flex-shrink-0",
+                    isFirstInRow ? (isEvenRow ? "w-[65%]" : "w-[30%]") : (isEvenRow ? "w-[30%]" : "w-[65%]")
+                  )}
+                >
+                  <div className={cn(
+                    "bg-muted overflow-hidden",
+                    isFirstInRow ? (isEvenRow ? "aspect-[2/1]" : "aspect-[3/4]") : (isEvenRow ? "aspect-[3/4]" : "aspect-[2/1]")
+                  )}>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-2xl font-semibold text-white mb-2">{project.title}</h3>
+                      <p className="text-sm text-gray-200 mb-4">{project.description}</p>
+                      <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
+                        View Project
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
