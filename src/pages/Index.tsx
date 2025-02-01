@@ -2,9 +2,9 @@ import Navbar from "@/components/Navbar";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
+import ProjectsCompleted from "@/components/ProjectsCompleted";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import Projects from "@/components/Projects";
 
 const Index = () => {
   return (
@@ -13,7 +13,7 @@ const Index = () => {
       <main>
         <About />
         <Features />
-        <Projects />
+        <ProjectsCompleted />
         <FAQ />
         <Contact />
       </main>
