@@ -1,10 +1,10 @@
+
 import Navbar from "@/components/Navbar";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import ProjectsCompleted from "@/components/ProjectsCompleted";
 import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -17,7 +17,6 @@ const Index = () => {
         <FAQ />
         <Contact />
       </main>
-      <Footer />
     </div>
   );
 };
