@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 
-const categories = ["ALL", "WEB", "MOBILE", "BRANDING", "PACKAGING", "VIDEO"];
+const categories = ["ALL", "WEB"];
 
 const projects = [
   {
@@ -19,20 +19,6 @@ const projects = [
     category: "WEB",
     description: "A full-featured e-commerce platform for DMart with product management, cart functionality, and secure checkout process.",
     image: "/lovable-uploads/09bc817d-d5b2-488d-b1bd-c7ab00e26588.png",
-    featured: false
-  },
-  {
-    title: "Mobile Banking App",
-    category: "MOBILE",
-    description: "A secure and user-friendly mobile banking application with features like transaction history and bill payments.",
-    image: "/placeholder.svg",
-    featured: true
-  },
-  {
-    title: "Tech Brand Identity",
-    category: "BRANDING",
-    description: "Complete brand identity design for a technology startup, including logo, color palette, and brand guidelines.",
-    image: "/placeholder.svg",
     featured: false
   }
 ];
