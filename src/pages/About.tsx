@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 
@@ -30,6 +31,74 @@ const About = () => {
                   My approach combines technical expertise with creative problem-solving
                   to deliver exceptional digital solutions.
                 </p>
+              </div>
+            </div>
+
+            {/* Why Choose Me Section */}
+            <div className="pt-20">
+              <h2 className="text-3xl font-bold mb-8">Why Choose Me?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    title: "Proven Experience",
+                    description: "With years of experience in web development, I've successfully delivered numerous projects across various industries."
+                  },
+                  {
+                    title: "Modern Tech Stack",
+                    description: "I stay up-to-date with the latest technologies and best practices to ensure your project uses cutting-edge solutions."
+                  },
+                  {
+                    title: "Dedicated Support",
+                    description: "I provide continuous support and clear communication throughout the development process and after launch."
+                  }
+                ].map((item, index) => (
+                  <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                    <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.description}</p>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* What I Can Provide Section */}
+            <div className="pt-20 pb-20">
+              <h2 className="text-3xl font-bold mb-8">What I Can Provide</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {[
+                  {
+                    title: "Custom Web Development",
+                    description: "Tailored web solutions that meet your specific business needs, from simple websites to complex web applications.",
+                    features: ["Responsive Design", "Progressive Web Apps", "E-commerce Solutions", "CMS Integration"]
+                  },
+                  {
+                    title: "Technical Consultation",
+                    description: "Expert advice on choosing the right technologies and architecture for your project.",
+                    features: ["Technology Stack Selection", "Performance Optimization", "Security Best Practices", "Scalability Planning"]
+                  },
+                  {
+                    title: "Frontend Development",
+                    description: "Creating engaging and responsive user interfaces using modern frameworks and libraries.",
+                    features: ["React/Next.js Development", "UI/UX Implementation", "Performance Optimization", "Cross-browser Compatibility"]
+                  },
+                  {
+                    title: "Backend Development",
+                    description: "Building robust server-side applications and APIs to power your web applications.",
+                    features: ["API Development", "Database Design", "Authentication Systems", "Server Management"]
+                  }
+                ].map((service, index) => (
+                  <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                    <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground mb-4">{service.description}</p>
+                    <ul className="space-y-2">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="text-sm text-muted-foreground flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                ))}
               </div>
             </div>
           </div>
