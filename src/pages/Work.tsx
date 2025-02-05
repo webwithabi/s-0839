@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -46,7 +47,7 @@ const Work = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen pt-24">
+      <div className="min-h-screen pt-24 pb-16">
         <div className="container mx-auto px-6">
           <h1 className="text-5xl font-bold text-center mb-16">Work we've loved doing</h1>
           
