@@ -34,11 +34,11 @@ const Work = () => {
     <>
       <Navbar />
       <div className="min-h-screen pt-24 pb-16">
-        <div className="container mx-auto px-6">
-          <h1 className="text-5xl font-bold text-center mb-16">Work we've loved doing</h1>
+        <div className="container mx-auto px-4 sm:px-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16">Work we've loved doing</h1>
           
           {/* Category Filter */}
-          <div className="flex justify-center gap-8 mb-16">
+          <div className="flex justify-center gap-6 sm:gap-8 mb-12 sm:mb-16">
             {categories.map((category) => (
               <button
                 key={category}
@@ -56,8 +56,8 @@ const Work = () => {
             ))}
           </div>
 
-          {/* Projects Flex Layout */}
-          <div className="flex flex-wrap gap-8 animate-fade-in">
+          {/* Projects Grid Layout for Mobile */}
+          <div className="grid grid-cols-1 sm:flex sm:flex-wrap gap-6 sm:gap-8 animate-fade-in">
             {filteredProjects.map((project, index) => {
               const isEvenRow = Math.floor(index / 2) % 2 === 0;
               const isFirstInRow = index % 2 === 0;
@@ -66,14 +66,21 @@ const Work = () => {
                 <div 
                   key={index} 
                   className={cn(
-                    "group relative overflow-hidden rounded-lg",
-                    "flex-grow-0 flex-shrink-0",
-                    isFirstInRow ? (isEvenRow ? "w-[65%]" : "w-[30%]") : (isEvenRow ? "w-[30%]" : "w-[65%]")
+                    "group relative overflow-hidden rounded-lg w-full",
+                    "sm:flex-grow-0 sm:flex-shrink-0",
+                    {
+                      "sm:w-[65%]": isFirstInRow && isEvenRow || !isFirstInRow && !isEvenRow,
+                      "sm:w-[30%]": !isFirstInRow && isEvenRow || isFirstInRow && !isEvenRow
+                    }
                   )}
                 >
                   <div className={cn(
                     "bg-muted overflow-hidden",
-                    isFirstInRow ? (isEvenRow ? "aspect-[2/1]" : "aspect-[3/4]") : (isEvenRow ? "aspect-[3/4]" : "aspect-[2/1]")
+                    "aspect-[3/2] sm:aspect-auto",
+                    {
+                      "sm:aspect-[2/1]": isFirstInRow && isEvenRow || !isFirstInRow && !isEvenRow,
+                      "sm:aspect-[3/4]": !isFirstInRow && isEvenRow || isFirstInRow && !isEvenRow
+                    }
                   )}>
                     <img
                       src={project.image}
@@ -82,9 +89,9 @@ const Work = () => {
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <h3 className="text-2xl font-semibold text-white mb-2">{project.title}</h3>
-                      <p className="text-sm text-gray-200 mb-4">{project.description}</p>
+                    <div className="text-center p-4 sm:p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">{project.title}</h3>
+                      <p className="text-sm text-gray-200 mb-4 px-2">{project.description}</p>
                       <Button variant="outline" className="text-white border-white hover:bg-white hover:text-black">
                         View Project
                       </Button>
