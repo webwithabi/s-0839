@@ -1,12 +1,13 @@
+
 import { useState, useEffect } from "react";
 
 const ProjectsCompleted = () => {
   const [count, setCount] = useState(0);
-  const targetCount = 250; // Number of completed projects
+  const targetCount = 250;
 
   useEffect(() => {
-    const duration = 2000; // Animation duration in milliseconds
-    const steps = 50; // Number of steps in the animation
+    const duration = 2000;
+    const steps = 50;
     const increment = targetCount / steps;
     const stepDuration = duration / steps;
 
@@ -25,16 +26,16 @@ const ProjectsCompleted = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-secondary">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-20 bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center">
-          <h2 className="text-6xl font-bold mb-4">
+          <h2 className="text-4xl sm:text-6xl font-bold mb-4">
             {count}+
           </h2>
-          <p className="text-2xl text-muted-foreground">
+          <p className="text-xl sm:text-2xl text-muted-foreground mb-4">
             Projects Successfully Completed
           </p>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             We take pride in our track record of delivering exceptional results for our clients across various industries.
           </p>
         </div>
